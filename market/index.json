@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "title": {
+    "en": "Session dates",
+    "zh": "会话按日期"
+  },
+  "description": {
+    "en": "Date-grouped session sidebar for DeepSeek Harness.",
+    "zh": "把每个工作区里的会话按日期分开并写明日期。"
+  },
+  "plugins": [
+    {
+      "name": "dsh-session-dates",
+      "title": {
+        "en": "Session dates",
+        "zh": "会话按日期分组"
+      },
+      "description": {
+        "en": "Groups every workspace's sessions by day with explicit date labels, a live running indicator, and date-query search.",
+        "zh": "每个工作区里的会话按自然日分组并标注具体日期；运行中圆点脉动、子代理计数、等待输入与未读结果提示；搜索支持 2026-10-28 / 10-28 / 今天 / 本周 之类的日期查询。"
+      },
+      "icon": "icon.svg",
+      "homepage": "https://www.npmjs.com/package/dsh-session-dates",
+      "versions": [
+        {
+          "version": "0.2.0",
+          "publishTimestamp": 1793188800,
+          "source": {
+            "type": "npm"
+          }
+        }
+      ]
+    }
+  ]
+}
