@@ -1,0 +1,50 @@
+{
+  "name": "dsh-session-dates",
+  "version": "0.2.1",
+  "type": "module",
+  "description": "Groups the sessions of every workspace in the DSH sidebar by day, with explicit date labels, a live running indicator, and date-query search.",
+  "license": "MIT",
+  "icon": "icon.svg",
+  "homepage": "https://github.com/liaohongrao/dsh-session-dates#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liaohongrao/dsh-session-dates.git"
+  },
+  "bugs": {
+    "url": "https://github.com/liaohongrao/dsh-session-dates/issues"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek",
+    "harness",
+    "sidebar",
+    "sessions",
+    "date",
+    "grouping"
+  ],
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "icon.svg",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-sidebar"
+      ]
+    }
+  }
+}
