@@ -1,0 +1,46 @@
+name: publish
+
+# Publishes to npm via Trusted Publishing (OIDC).
+# No NPM_TOKEN secret is required: GitHub mints a short-lived OIDC token and npm
+# exchanges it for a publish grant. Configure it once at
+#   https://www.npmjs.com/package/dsh-session-dates/access  ->  Trusted publishing
+# with: repository = <your-github-user>/dsh-session-dates, workflow = publish.yml
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'direct = npm publish, staged = npm stage publish (approve on npmjs.com)'
+        type: choice
+        options:
+          - direct
+          - staged
+        default: direct
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+
+      - name: Verify the client bundle parses
+        run: node --check client.js
+
+      - name: Publish (direct, trusted publishing)
+        if: ${{ inputs.mode != 'staged' }}
+        run: npm publish --access public
+
+      - name: Publish (staged, trusted publishing)
+        if: ${{ inputs.mode == 'staged' }}
+        run: npm stage publish --access public
